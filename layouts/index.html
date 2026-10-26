@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Site.Title }} — tools that answer for a whole fleet of repositories</title>
+<meta name="description" content="go-fleettools — small Go tools that sweep a fleet of repositories (red branches, stale toolchains, unbounded readers, landing drift), prove that tests can fail, wait for checks without calling silence a pass, and run fuzz targets within a load budget. Also the landing kit shared by the go-* landings.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{/* ⛔ This meta is what the deploy VERIFIES: it fetches the live URL and
+     fails unless the generator is Hugo, so a Pages source left on a branch
+     (Jekyll rendering README.md) cannot pass for this site. */}}
+{{ hugo.Generator }}
+{{ partial "styles.html" . }}
+</head>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/img/logo.svg" width="32" height="32" alt="go-fleettools logo"> go-fleettools</a>
+    <nav><a href="#principles">Principles</a><a href="#repos">Tools</a><a href="https://go-fleettools.github.io/docs/">Docs</a></nav>
+    {{ partial "theme-toggle.html" . }}
+  </div></header>
+  {{ partial "fork-ribbon.html" "https://github.com/go-fleettools" }}
+
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">Tools that answer for a whole fleet,<br><span class="accent">and say when they could not look.</span></h1>
+      <p class="sub">go-fleettools holds the small Go programs a fleet of hundreds of repositories needs and nobody wants to do by hand: <b>sweeps</b> (red branches, stale toolchains, unbounded readers, landing drift), a <b>mutation check</b> that proves a test can fail, a <b>waiter</b> that refuses to call an empty check list a pass, and a <b>fuzz runner</b>. They also hold the <b>landing kit</b> shared by the go-* landings. Each one says so out loud when it read nothing.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://go-fleettools.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
+      </div>
+      <div class="trust"><span><b>{{ len .Site.Params.repos }}</b> repositories</span><span>every tool has a <b>README</b> that says why it exists</span><span>installed with <b>go install</b></span></div>
+    </div>
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">prwait</span></div>
+<pre>$ prwait -repo go-pkgx/pkgx 82 83
+go-pkgx/pkgx#82 <span class="c-str">PASS</span> SUCCESS:24
+go-pkgx/pkgx#83 <span class="c-key">FAIL</span> test (windows-latest)=FAILURE
+
+<span class="c-com"># from the prwait README: a pull request passes only when</span>
+<span class="c-com"># checks exist, every one has finished, and all are acceptable.</span></pre>
+    </div>
+  </div></div>
+
+  <div class="strip"><div class="wrap">
+    <span class="lead-line">One organisation, <b>{{ len .Site.Params.repos }}</b> repositories</span>
+    <div class="mods">{{ range .Site.Params.repos }}<a href="#repos">{{ .name }}</a>{{ end }}</div>
+  </div></div>
+
+  <section id="principles"><div class="wrap">
+    <span class="eyebrow">What they have in common</span>
+    <h2>Absence is never <i>evidence</i>.</h2>
+    <p class="lead">Each tool was built after a wrong answer cost something, and each README says which. The same few rules recur.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🔇</div><h3>Silence is not a pass</h3><p>prwait refuses an empty check list; mutate exits 0 only when the suite went red; a sweep that reads nothing exits non-zero instead of reporting a clean fleet.</p></div>
+      <div class="card"><div class="ico">📅</div><h3>Every answer carries its date</h3><p>fleetfind prints the date of the inventory it answers from and warns when it is old: a "nothing matches" is only as good as when it was measured.</p></div>
+      <div class="card"><div class="ico">🔎</div><h3>A lead, not a verdict</h3><p>unbounded and landingdiff report where to look, never that something is broken, and say what they cannot see.</p></div>
+      <div class="card"><div class="ico">🧪</div><h3>A control that could fail</h3><p>The tools are tested against a planted defect: fuzzrun against a failing target, landingkit against a tinted background, so that "found nothing" means something.</p></div>
+    </div>
+  </div></section>
+
+  <section id="repos"><div class="wrap">
+    <span class="eyebrow">The organisation</span>
+    <h2>Repositories</h2>
+    <div class="grid">
+      {{ range .Site.Params.repos }}
+      <article class="card">
+        <h3><a href="{{ .url }}">{{ .name }}</a> <span class="tag {{ .status }}">{{ if .label }}{{ .label }}{{ else }}{{ .status }}{{ end }}</span></h3>
+        <p>{{ .blurb | markdownify }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section id="eco" style="padding-top:6px"><div class="wrap">
+    <div class="band">
+      <h2>Install one.</h2>
+      <p>Each tool is a Go module installed with <code>go install</code>; the documentation gives each one's install line, its commands and what it will not tell you.</p>
+      <a class="btn btn-ghost" href="https://github.com/go-fleettools">{{ partial "icons/github.html" . }}The organisation on GitHub →</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>© the go-fleettools authors</span><span>Licences: see each repository</span></div></footer>
+</body>
+</html>
