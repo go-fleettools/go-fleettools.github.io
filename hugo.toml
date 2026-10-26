@@ -34,12 +34,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   statsEnd = "#fad7c5"
   bandText = "#fce4d8"
 
-# The mantra strip (LICENSE=BSD-3-Clause, CGO_ENABLED=0) is OFF: `mantracheck`
-# on 2026-10-26 says go-fleettools does not bear it out (fleettools has no
-# licence file detected, and landingkit carries Octicons under MIT). Turn it on
-# only when that check passes.
+# The mantra strip. `mantracheck` on 2026-10-26, after fleettools v0.40.1 added
+# its LICENSE: "HOLDS", 13 repositories, 0 with code not BSD-3-Clause, 0 with cgo
+# signals; the one other licence is data (landingkit's Octicons, MIT), which
+# gets its own chip.
 [params.mantra]
-  show = false
+  items = ["LICENSE=BSD-3-Clause", "CGO_ENABLED=0", "icons: MIT, Octicons"]
 
 # One card per repository of the organisation. Every field is rendered by
 # layouts/index.html. "label" is the latest tag read from the repository on the
@@ -48,7 +48,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
-  label  = "v0.40.0"
+  label  = "v0.40.1"
   url    = "https://github.com/go-fleettools/fleettools"
   blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`."
 [[params.repos]]
