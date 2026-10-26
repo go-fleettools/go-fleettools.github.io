@@ -78,9 +78,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "modfloor"
   status = "ready"
-  label  = "v0.2.0"
+  label  = "v0.3.0"
   url    = "https://github.com/go-fleettools/modfloor"
-  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below."
+  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
 [[params.repos]]
   name   = "unbounded"
   status = "ready"
