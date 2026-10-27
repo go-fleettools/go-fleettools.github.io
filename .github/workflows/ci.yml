@@ -28,7 +28,7 @@ jobs:
       # A page that builds and says nothing is a page nobody notices is empty.
       - name: every repository is on it
         run: |
-          for repo in fleettools landingkit mutate prwait staletools modfloor unbounded fleetfind landingdiff fuzzrun .github docs; do
+          for repo in fleettools landingkit mutate prwait staletools modfloor unbounded fleetfind landingdiff fuzzrun buildstamp .github docs; do
             grep -q "go-fleettools/$repo\|go-fleettools.github.io/$repo" public/index.html \
               || { echo "::error::$repo is not on the page"; exit 1; }
           done

@@ -106,6 +106,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   url    = "https://github.com/go-fleettools/fuzzrun"
   blurb  = "Runs every Go fuzz target of a module, in parallel within a load budget, and reports crashers with the corpus file that reproduces them."
 [[params.repos]]
+  name   = "buildstamp"
+  status = "ready"
+  label  = "v0.1.0"
+  url    = "https://github.com/go-fleettools/buildstamp"
+  blurb  = "Reads the Go build information of any binary, WebAssembly included, and fails one built from a modified tree. `go version -m` answers \"unrecognized file format\" on a .wasm."
+[[params.repos]]
   name   = ".github"
   status = "active"
   label  = "no tag"
