@@ -45,32 +45,40 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # layouts/index.html. "label" is the latest tag read from the repository on the
 # date in the comment above it; a repository with no tag says so.
 #
-# Tags read 2026-10-26, except modfloor's, read 2026-11-01 at its release.
+# ⭐ The labels are no longer typed by hand. Rewrite them with
 #
-# ⛔ modfloor's blurb carried a WRONG figure for a day: "904 of the 939 modules
-# below 1.27.3 are installable". That count was true over a population holding
-# 540 modules other projects publish, found inside our own work trees -- the
-# owner test passed them and nothing asked whether we could push a fix to
+#     tagcells --org go-fleettools --write hugo.toml
+#
+# (go-fleettools/fleettools v0.67.0 or later, which reads `label =` in a
+# [[params.repos]] block as well as `tag =` in [[params.modules]]). It asks
+# `git ls-remote` for the highest vX.Y.Z of each repository, so it spends no
+# REST budget, and it exits 2 rather than calling a file with no cell up to
+# date. Last rewritten 2026-11-01: 11 cells, 3 of them stale.
+#
+# ⛔ Until fleettools v0.67.0 that command could not read this file at all --
+# it looked only for [[params.modules]]/`tag` -- so these thirteen labels,
+# dated 2026-10-26 in this comment, had never once been checked by the tool
+# that exists for exactly that. Three were stale when it first could look:
+# fleettools v0.40.1 (really v0.67.0), landingkit v0.12.0 (v0.18.0) and
+# modfloor v0.6.0 (v0.6.1). A date in a comment is not a measurement.
+#
+# ⛔ modfloor's blurb also carried a WRONG figure for a day: "904 of the 939
+# modules below 1.27.3 are installable". That count was true over a population
+# holding 540 modules other projects publish, found inside our own work trees --
+# the owner test passed them and nothing asked whether we could push a fix to
 # sigs.k8s.io/yaml. modfloor v0.5.0 sets those aside; the real figure is 262.
 # A count on a card is a claim, and this one was published before anyone read
 # the list it came from.
-# ⛔ Only modfloor's is measured today, and the rest are a week old, because
-# `tagcells` -- the fleet's own tool for exactly this -- cannot read this file:
-# it looks for [[params.modules]] with `tag = "vX.Y.Z"`, and these cards are
-# [[params.repos]] with `label =`. Run against this hugo.toml it answers
-# "1 file(s), 0 cell(s), 0 stale" and exits 2, refusing to call nothing a pass.
-# Teaching it the second shape comes in its own pull request, after which these
-# labels are rewritten by measurement instead of by hand.
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
-  label  = "v0.40.1"
+  label  = "v0.67.0"
   url    = "https://github.com/go-fleettools/fleettools"
   blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`."
 [[params.repos]]
   name   = "landingkit"
   status = "ready"
-  label  = "v0.12.0"
+  label  = "v0.18.0"
   url    = "https://github.com/go-fleettools/landingkit"
   blurb  = "The go-* landings' shared design as a Hugo module, and the command that derives a brand from a logo, checks a landing against the reference (text and pixels) and checks every link of the built site. This very landing uses it."
 [[params.repos]]
@@ -94,7 +102,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "modfloor"
   status = "ready"
-  label  = "v0.6.0"
+  label  = "v0.6.1"
   url    = "https://github.com/go-fleettools/modfloor"
   blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below — 262 of ours on 2026-11-01, in 221 repositories, so the campaign is counted in pull requests and not in findings. `--baseline` turns the check into a gate, because a report that is red for ever is not one: it fails only for a module the recorded set does not have, and a module that LEFT the population is reported apart from one that was fixed. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
 [[params.repos]]
