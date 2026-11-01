@@ -44,7 +44,15 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # One card per repository of the organisation. Every field is rendered by
 # layouts/index.html. "label" is the latest tag read from the repository on the
 # date in the comment above it; a repository with no tag says so.
-# Tags read 2026-10-26.
+#
+# Tags read 2026-10-26, except modfloor's, read 2026-11-01 at its release.
+# ⛔ Only modfloor's is measured today, and the rest are a week old, because
+# `tagcells` -- the fleet's own tool for exactly this -- cannot read this file:
+# it looks for [[params.modules]] with `tag = "vX.Y.Z"`, and these cards are
+# [[params.repos]] with `label =`. Run against this hugo.toml it answers
+# "1 file(s), 0 cell(s), 0 stale" and exits 2, refusing to call nothing a pass.
+# Teaching it the second shape comes in its own pull request, after which these
+# labels are rewritten by measurement instead of by hand.
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
@@ -78,9 +86,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "modfloor"
   status = "ready"
-  label  = "v0.3.0"
+  label  = "v0.4.0"
   url    = "https://github.com/go-fleettools/modfloor"
-  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
+  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below. It splits that exposure by whether a consumer can reach it at all — on this fleet, 904 of the 939 modules below 1.27.3 are installable — and counts apart the ones already fixed in a working tree and never released. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
 [[params.repos]]
   name   = "unbounded"
   status = "ready"
