@@ -102,9 +102,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "modfloor"
   status = "ready"
-  label  = "v0.6.1"
+  label  = "v0.7.0"
   url    = "https://github.com/go-fleettools/modfloor"
-  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below — 262 of ours on 2026-11-01, in 221 repositories, so the campaign is counted in pull requests and not in findings. `--baseline` turns the check into a gate, because a report that is red for ever is not one: it fails only for a module the recorded set does not have, and a module that LEFT the population is reported apart from one that was fixed. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
+  blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below — 269 of ours on 2026-11-01, in 10 groups by the floor they declare, so the campaign is two `gopin` runs for 252 of them and not one run or 269. `--baseline` turns the check into a gate, because a report that is red for ever is not one: it fails only for a module it measured and found CLEAN, and reports apart the modules that entered the population and those that left it. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
 [[params.repos]]
   name   = "unbounded"
   status = "ready"
