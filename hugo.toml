@@ -53,7 +53,18 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # [[params.repos]] block as well as `tag =` in [[params.modules]]). It asks
 # `git ls-remote` for the highest vX.Y.Z of each repository, so it spends no
 # REST budget, and it exits 2 rather than calling a file with no cell up to
-# date. Last rewritten 2026-11-01: 11 cells, 3 of them stale.
+# date. Last rewritten 2026-11-05: 11 cells, 11 read, 3 of them stale
+# (fleettools v0.67.0 -> v0.78.0, landingkit v0.18.0 -> v0.20.0, modfloor
+# v0.7.0 -> v0.8.0). Four days, three cells: a comment with a date is the one
+# part of this file nothing checks, so the rewrite is the record and the date
+# is only its label.
+#
+# ⛔ The tagcells that wrote those three said of ITSELF "STALE -- v0.73.0 is 6
+# commit(s) behind", so its answer was checked against the repositories rather
+# than taken: `git ls-remote --tags --sort=-v:refname` gives v0.78.0, v0.20.0
+# and v0.8.0, and fleettools' v0.78.0 is abf3a287, the merge commit it was
+# tagged on. A stale tool reporting staleness is exactly the reading that has
+# to be confirmed somewhere else.
 #
 # ⛔ Until fleettools v0.67.0 that command could not read this file at all --
 # it looked only for [[params.modules]]/`tag` -- so these thirteen labels,
@@ -72,13 +83,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
-  label  = "v0.67.0"
+  label  = "v0.78.0"
   url    = "https://github.com/go-fleettools/fleettools"
   blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`."
 [[params.repos]]
   name   = "landingkit"
   status = "ready"
-  label  = "v0.18.0"
+  label  = "v0.20.0"
   url    = "https://github.com/go-fleettools/landingkit"
   blurb  = "The go-* landings' shared design as a Hugo module, and the command that derives a brand from a logo, checks a landing against the reference (text and pixels) and checks every link of the built site. This very landing uses it."
 [[params.repos]]
@@ -102,7 +113,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "modfloor"
   status = "ready"
-  label  = "v0.7.0"
+  label  = "v0.8.0"
   url    = "https://github.com/go-fleettools/modfloor"
   blurb  = "The Go toolchain floor a module declares, against the floor a fix requires: reads the published go.mod, where a consumer reads it, and says which modules are below — 269 of ours on 2026-11-01, in 10 groups by the floor they declare, so the campaign is two `gopin` runs for 252 of them and not one run or 269. `--baseline` turns the check into a gate, because a report that is red for ever is not one: it fails only for a module it measured and found CLEAN, and reports apart the modules that entered the population and those that left it. `modfloor pseudo` fails when a fleet module is required at a pseudo-version."
 [[params.repos]]
