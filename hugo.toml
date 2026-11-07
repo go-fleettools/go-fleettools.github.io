@@ -83,9 +83,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
-  label  = "v0.78.0"
+  label  = "v0.82.1"
   url    = "https://github.com/go-fleettools/fleettools"
-  blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`."
+  blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped or run and fail, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`. It also ships **reusable workflows** a repository calls in nine lines, so a check runs where the change is made rather than in a report nobody opens: `go-floor.yml` fails a branch that lowers its `go` directive below the fleet's floor — the case a fleet-wide sweep structurally cannot catch, because a repository created below the floor arrives as new to the population."
 [[params.repos]]
   name   = "landingkit"
   status = "ready"
