@@ -83,9 +83,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "fleettools"
   status = "ready"
-  label  = "v0.82.1"
+  label  = "v0.84.0"
   url    = "https://github.com/go-fleettools/fleettools"
-  blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped or run and fail, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`. It also ships **reusable workflows** a repository calls in nine lines, so a check runs where the change is made rather than in a report nobody opens: `go-floor.yml` fails a branch that lowers its `go` directive below the fleet's floor — the case a fleet-wide sweep structurally cannot catch, because a repository created below the floor arrives as new to the population."
+  blurb  = "Sweeps across about 1800 repositories: which default branches are red, which runners stopped or run and fail, which modules are ahead of their tag, which foreign judges the CI never installs, and which tests exist without ever running. One command per sweep, under `cmd/`. It also ships **reusable workflows** a repository calls in nine lines, so a check runs where the change is made rather than in a report nobody opens: `go-floor.yml` fails a branch that lowers its `go` directive below the fleet's floor — the case a fleet-wide sweep structurally cannot catch, because a repository created below the floor arrives as new to the population. And `priorart` turns the same idea on the work itself: before starting a subject it reads a repository's **branches** — by name *and* head-commit subject — and its **issues and pull requests, open and closed**, and exits non-zero when the subject is already covered. It exists because three pieces of work were redone on one repository in a single day with \"search the tracker first\" already written down as a rule: the thought arrives as *let me fix this*, never as *let me check whether this is fixed*, so the check has to run rather than be remembered. A surface it could not read holds the gate shut, because an answer not obtained is not a negative answer."
 [[params.repos]]
   name   = "landingkit"
   status = "ready"
