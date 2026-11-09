@@ -101,9 +101,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "prwait"
   status = "ready"
-  label  = "v0.5.0"
+  label  = "v0.7.0"
   url    = "https://github.com/go-fleettools/prwait"
-  blurb  = "Waits until a pull request's checks are finished, and refuses to call an empty check list a pass. Also waits for a branch or a workflow run."
+  blurb  = "Waits until a pull request's checks are finished, and refuses to call an empty check list a pass — or a complete, all-green one, when a workflow run for the same commit is red. A check run exists per job, so a run that fails before creating one leaves nothing red and nothing pending: v0.5.0 passed a pull request whose `pages` and `playground` runs had both failed. It reads the runs for the head commit too, judging the latest of each workflow per event. Also waits for a branch or a workflow run."
 [[params.repos]]
   name   = "staletools"
   status = "ready"
