@@ -35,8 +35,12 @@
 go-pkgx/pkgx#82 <span class="c-str">PASS</span> SUCCESS:24
 go-pkgx/pkgx#83 <span class="c-key">FAIL</span> test (windows-latest)=FAILURE
 
-<span class="c-com"># from the prwait README: a pull request passes only when</span>
-<span class="c-com"># checks exist, every one has finished, and all are acceptable.</span></pre>
+$ prwait -repo go-tex/go-tex.github.io 239
+go-tex/go-tex.github.io#239 <span class="c-key">FAIL</span> playground (pull_request run)=FAILURE
+
+<span class="c-com"># the second one passed until v0.7.0: its three check runs were all</span>
+<span class="c-com"># green, because a run that fails before creating a job creates no</span>
+<span class="c-com"># check run at all. The runs for the head commit are read too.</span></pre>
     </div>
   </div></div>
 
