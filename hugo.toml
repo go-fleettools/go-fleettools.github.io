@@ -39,6 +39,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 # signals; the one other licence is data (landingkit's Octicons, MIT), which
 # gets its own chip.
 [params.mantra]
+  goarch = ["amd64", "arm64"]
   items = ["LICENSE=BSD-3-Clause", "CGO_ENABLED=0", "icons: MIT, Octicons"]
 
 # One card per repository of the organisation. Every field is rendered by
