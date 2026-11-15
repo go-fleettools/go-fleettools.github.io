@@ -126,7 +126,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.repos]]
   name   = "fleetfind"
   status = "ready"
-  label  = "v0.2.0"
+  label  = "v0.4.0"
   url    = "https://github.com/go-fleettools/fleetfind"
   blurb  = "Which repository already does this? A live, dated inventory of every organisation, because a hand-kept capability map drifts."
 [[params.repos]]
