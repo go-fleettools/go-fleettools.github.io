@@ -158,3 +158,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   label  = "on main"
   url    = "https://go-fleettools.github.io/docs/"
   blurb  = "The documentation (Hugo + Hextra): one page per repository, from each repository's README at its latest tag."
+
+# The hero's buttons, rendered by landingkit's cta.html in the kit's order.
+[[params.cta]]
+  kind  = "docs"
+  href  = "https://go-fleettools.github.io/docs/"
+  label = "Read the documentation →"
