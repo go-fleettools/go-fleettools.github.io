@@ -1,0 +1,39 @@
+# Are the version numbers this landing states still the latest releases?
+#
+# Eleven repositories are listed with a `label = "vX.Y.Z"`, and the page is
+# wrong the moment ANOTHER repository publishes a tag. Nothing here moves, so
+# nothing here can notice: on 2026-11-22 three of the eleven were stale, and one
+# of the three went stale WHILE the pull request fixing the other two was being
+# written (#20, "this is not a staleness problem, it is a missing check").
+#
+# ⛔ SO: NO `push` AND NO `pull_request`. A trigger that fires on a change would
+# paint a contributor's branch red for somebody else's release, in a repository
+# they did not touch — a gate nobody can keep green, and the first response to
+# one of those is to switch it off. A red scheduled run blocks no pull request
+# and no release: it is a standing question with an owner.
+#
+# ⛔ It needs NO secret, not even github.token: `tagcells` resolves each latest
+# release with `git ls-remote --tags`, so this spends nothing of the REST budget
+# every session and Renovate share — and a budget at zero cannot make the check
+# lie. Report-only: a lane that can rewrite the file it just judged is not a
+# check. The fix is `tagcells --org go-fleettools --write hugo.toml` on a branch.
+#
+# min-cells is the eleven labels this file holds today. ⛔ Without it the check
+# cannot notice a claim DISAPPEARING: the refusal is "did I read none at all?",
+# which stays green while ten of eleven are read. Removing a repository from the
+# page is then one line here, in the pull request that removes it.
+name: labels
+
+on:
+  schedule:
+    - cron: "37 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  current:
+    uses: go-fleettools/fleettools/.github/workflows/labels-current.yml@main
+    with:
+      min-cells: 11
